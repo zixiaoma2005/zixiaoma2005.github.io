@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Website</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+  <div class="background-particles"></div>
+  <div class="layout-wrapper">
+    <div class="sidebar">
+      <div class="profile-pic">
+        <img src="images/profile.jpg" alt="Profile Picture">
+      </div>
+      <div class="profile-name">Zixiao Ma</div>
+      <hr class="sidebar-divider">
+      <div class="personal-info">
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div class="contact-info-group">
+            <div class="contact-label">EMAIL</div>
+            <div class="contact-value"><a href="mailto:zixiaoma@umich.edu" target="_blank" rel="noopener noreferrer">zixiaoma@umich.edu</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-brands fa-linkedin-in"></i>
+          <div class="contact-info-group">
+            <div class="contact-label">LINKEDIN</div>
+            <div class="contact-value"><a href="https://www.linkedin.com/in/zixiao-m/" target="_blank" rel="noopener noreferrer">zixiaoma</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <div class="contact-info-group">
+            <div class="contact-label">EXPECTED GRADUATION</div>
+            <div class="contact-value">May 2027</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-building-columns"></i>
+          <div class="contact-info-group">
+            <div class="contact-label">MAJOR</div>
+            <div class="contact-value">Computer Science Engineering</div>
+          </div>
+        </div>
+        <div class="contact-item">
+            <i class="fa-brands fa-github"></i>
+            <div class="contact-info-group">
+              <div class="contact-label">GITHUB</div>
+              <div class="contact-value"><a href="https://github.com/zixiaoma2005" target="_blank" rel="noopener noreferrer">zixiaoma2005</a></div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="tabs">
+        <button class="tab active" data-tab="about">About</button>
+        <button class="tab" data-tab="resume">Resume</button>
+        <button class="tab" data-tab="portfolio">Portfolio</button>
+        <button class="tab" data-tab="contact">Contact</button>
+      </div>
+      <div class="tab-content" id="about">
+        <!-- About content goes here -->
+      </div>
+      <div class="tab-content" id="resume" style="display:none;">
+        <!-- Resume content goes here -->
+      </div>
+      <div class="tab-content" id="portfolio" style="display:none;">
+        <!-- Portfolio content goes here -->
+      </div>
+      <div class="tab-content" id="contact" style="display:none;">
+        <!-- Contact content goes here -->
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html> 
