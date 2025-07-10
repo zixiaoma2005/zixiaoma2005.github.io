@@ -1,36 +1,3 @@
-// Tab switching logic with smooth transitions
-const tabs = document.querySelectorAll('.tab');
-const tabContents = document.querySelectorAll('.tab-content');
-
-function showTab(tabName) {
-  tabContents.forEach(content => {
-    if (content.id === tabName) {
-      content.classList.add('active');
-      content.style.display = '';
-      setTimeout(() => {
-        content.classList.add('active');
-      }, 10);
-    } else {
-      content.classList.remove('active');
-      setTimeout(() => {
-        content.style.display = 'none';
-      }, 500);
-    }
-  });
-  tabs.forEach(tab => {
-    tab.classList.toggle('active', tab.dataset.tab === tabName);
-  });
-}
-
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    showTab(tab.dataset.tab);
-  });
-});
-
-// Initialize first tab
-showTab('about');
-
 // Simple animated particles background
 const canvas = document.createElement('canvas');
 canvas.style.position = 'absolute';
@@ -87,4 +54,43 @@ function animateParticles() {
   }
   requestAnimationFrame(animateParticles);
 }
-animateParticles(); 
+animateParticles();
+
+document.addEventListener("DOMContentLoaded", function() {
+  const tabs = document.querySelectorAll('.tab');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  // Restore last selected tab from localStorage
+  const savedTab = localStorage.getItem('selectedTab');
+  let activeTab = savedTab || 'about';
+
+  function activateTab(tabName) {
+    tabs.forEach(tab => {
+      if (tab.dataset.tab === tabName) {
+        tab.classList.add('active');
+      } else {
+        tab.classList.remove('active');
+      }
+    });
+    tabContents.forEach(content => {
+      if (content.id === tabName) {
+        content.classList.add('active');
+        content.style.display = '';
+      } else {
+        content.classList.remove('active');
+        content.style.display = 'none';
+      }
+    });
+    localStorage.setItem('selectedTab', tabName);
+  }
+
+  // Initial activation
+  activateTab(activeTab);
+
+  // Tab click event
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      activateTab(this.dataset.tab);
+    });
+  });
+}); 
