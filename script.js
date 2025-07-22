@@ -56,6 +56,104 @@ function animateParticles() {
 }
 animateParticles();
 
+// Portfolio Modal Logic
+const portfolioProjects = [
+  {
+    title: 'Self Service Identity Portal',
+    img: 'images/fingerprint.jpg',
+    long: 'A web portal that allows users to manage their own digital identities, including password resets, profile updates, and access requests, integrated with enterprise IAM systems.',
+    skills: 'C#, ASP.NET Razor, Blazor, Docker, OKta, Saviynt, Postman, Bootstrap, HTML/CSS, IAM'
+  },
+  {
+    title: 'Wikipedia Search Engine',
+    img: 'images/search_engine.jpg',
+    long: 'A custom search engine built for Wikipedia articles, featuring fast indexing, relevance ranking, and a user-friendly interface for exploring large datasets.',
+    skills: 'Python, Flask, React, Javascript, Hadoop, HTML/CSS, Search Algorithms, Web Scraping'
+  },
+  {
+    title: 'Full-Stack Social Media Platform',
+    img: 'images/social_media.jpg',
+    long: 'A scalable social media platform with real-time messaging, user profiles, and media sharing, built using modern web technologies and cloud infrastructure.',
+    skills: 'Python, Flask, React, Javascript, SQLite, HTML/CSS, AWS'
+  },
+  {
+    title: 'Piazza Post Identification',
+    img: 'images/Piazza-Icon.png',
+    long: 'A tool for automatically identifying and categorizing posts on Piazza, helping instructors and students quickly find relevant discussions and resources.',
+    skills: 'C++, OOP, NLP, Data Analysis'
+  },
+  {
+    title: 'Remote Underwater Vehicle',
+    img: 'images/ROV.jpg',
+    long: 'A remotely operated underwater vehicle (ROV) designed for exploration and data collection, featuring live video streaming and sensor integration.',
+    skills: 'Python, CAD, Hardware Diagnostics, 3D Printing, Public Speaking, Project Management'
+  }
+];
+
+const portfolioCards = document.querySelectorAll('.portfolio-card');
+const modalOverlay = document.getElementById('portfolioModalOverlay');
+const modal = document.getElementById('portfolioModal');
+const modalTitle = document.getElementById('portfolioModalTitle');
+const modalDesc = document.getElementById('portfolioModalDesc');
+const modalClose = document.getElementById('portfolioModalClose');
+const modalImg = document.getElementById('portfolioModalImg');
+
+portfolioCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const idx = parseInt(card.getAttribute('data-project'), 10) - 1;
+    const project = portfolioProjects[idx];
+    modalTitle.textContent = project.title;
+    modalDesc.innerHTML = project.long + '<br><br><strong>Skills:</strong> ' + (project.skills || '');
+    // Copy image from card or use from project data
+    const cardImg = card.querySelector('img');
+    if (cardImg) {
+      modalImg.src = cardImg.src;
+      modalImg.alt = cardImg.alt;
+      modalImg.style.display = 'block';
+    } else if (project.img) {
+      modalImg.src = project.img;
+      modalImg.alt = project.title;
+      modalImg.style.display = 'block';
+    } else {
+      modalImg.style.display = 'none';
+    }
+    modalOverlay.style.display = 'flex';
+  });
+});
+
+modalClose.addEventListener('click', () => {
+  modalOverlay.style.display = 'none';
+});
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) {
+    modalOverlay.style.display = 'none';
+  }
+});
+
+// EmailJS Contact Form Logic
+const contactForm = document.getElementById('contactForm');
+const contactFormStatus = document.getElementById('contactFormStatus');
+
+if (contactForm) {
+  emailjs.init('nDOeQ__A5VZ0p8-9e'); // public key
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    contactFormStatus.textContent = 'Sending...';
+    const formData = {
+      from_name: contactForm.fullName.value,
+      reply_to: contactForm.email.value,
+      message: contactForm.message.value
+    };
+    emailjs.send('service_dfnaucr', 'template_j8p8qkk', formData)
+      .then(function() {
+        contactFormStatus.textContent = 'Message sent successfully!';
+        contactForm.reset();
+      }, function(error) {
+        contactFormStatus.textContent = 'Failed to send message. Please try again later.';
+      });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
   const tabs = document.querySelectorAll('.tab');
   const tabContents = document.querySelectorAll('.tab-content');
